@@ -1,0 +1,15 @@
+*~
+*.swp
+*.bak
+
+src/CheckPluginInterface/bin/
+src/SourcePluginInterface/SourcePluginInterface/bin/
+src/ClassDeviceInformation/ClassDeviceInformation/bin/
+src/InterfaceFunctionPlugin/InterfaceFunctionPlugin/bin/
+src/Plugins/PluginCheckSerial/bin/
+src/Plugins/PluginHMP40x0/bin/
+src/Plugins/PluginRampOnOff/bin/
+src/Plugins/PluginRampSawTooth/bin/
+src/Plugins/PluginRampTrapezoidal/bin/
+src/Plugins/PluginTOE895x/PluginTOE895x/bin/
+src/SourceRemoteControl/bin/
