@@ -56,16 +56,28 @@ namespace SourceRemoteControl
         List<NumericUpDown> list_numUDCurrentLimits= new List<NumericUpDown>();
         List<Button> list_btnOutputs = new List<Button>();
 
-        string optConfigDirectory;
+        string optConfigDirectory = "";
 
-        public Form1()
+        public Form1(string configString)
         {
             InitializeComponent();
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
-            optConfigDirectory = config.FilePath;
-            optConfigDirectory = Path.GetDirectoryName(optConfigDirectory);
-            if (Directory.Exists(optConfigDirectory) == false)
-                Directory.CreateDirectory(optConfigDirectory);
+			optConfigDirectory = configString;
+			if(optConfigDirectory == "") {  
+				/* load and store config in configuration directory defined by system */
+	            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+	            optConfigDirectory = config.FilePath;
+	            optConfigDirectory = Path.GetDirectoryName(optConfigDirectory);
+			}
+
+            if (Directory.Exists(optConfigDirectory) == false) {
+				try {
+                	Directory.CreateDirectory(optConfigDirectory);
+				}
+				catch(Exception e) {
+					Console.WriteLine("Could not create directory {0}. Exception: {1}", optConfigDirectory, e.ToString());
+					System.Windows.Forms.Application.Exit();
+				}
+			}
 
             loadPlugins();
 

@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-
+using Mono.Options;
 namespace SourceRemoteControl
 {
     static class Program
@@ -27,11 +27,17 @@ namespace SourceRemoteControl
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());			
+
+			String configString = "";
+			OptionSet p = new OptionSet ()
+				.Add ("configpath=|c=", s => configString = s);
+			p.Parse (args);
+
+            Application.Run(new Form1(configString));			
         }
     }
 }
