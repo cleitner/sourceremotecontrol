@@ -17,6 +17,7 @@
 using System;
 using System.Data;
 using SourcePluginInterface;
+using System.IO;
 using System.IO.Ports;
 using System.Globalization;
 using System.Windows.Forms;
@@ -133,7 +134,7 @@ namespace PluginTOE895x
                     cbProtocol.SelectedIndex
                 });
 
-                mySettings.WriteXml(configDir + "\\config_plugin_toe895x.xml", XmlWriteMode.WriteSchema);
+                mySettings.WriteXml(configDir + Path.DirectorySeparatorChar + "config_plugin_toe895x.xml", XmlWriteMode.WriteSchema);
 
             }
             else
@@ -402,7 +403,7 @@ namespace PluginTOE895x
             {
                 // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsPluginTOE895x");
-                mySettings.ReadXml(confDir + "\\config_plugin_toe895x.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_toe895x.xml");
 
                 comport = mySettings.Rows[0]["ComPort"].ToString();
                 baud = Convert.ToInt32(mySettings.Rows[0]["Baudrate"].ToString(), 10);

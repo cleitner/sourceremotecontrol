@@ -17,6 +17,7 @@
 using System;
 using System.Data;
 using SourcePluginInterface;
+using System.IO;
 using System.IO.Ports;
 using System.Globalization;
 using System.Windows.Forms;
@@ -128,7 +129,7 @@ namespace PluginHMP40x0
 					cbProtocol.SelectedIndex
 				});
 				
-				mySettings.WriteXml(configDir + "\\config_plugin_hmp40x0.xml", XmlWriteMode.WriteSchema);
+				mySettings.WriteXml(configDir + Path.DirectorySeparatorChar + "config_plugin_hmp40x0.xml", XmlWriteMode.WriteSchema);
 				
 			}
 			else
@@ -394,7 +395,7 @@ namespace PluginHMP40x0
 			{
 				// Create Settings Table
 				DataTable mySettings = new DataTable("SettingsPluginHMP40x0");
-				mySettings.ReadXml(confDir + "\\config_plugin_hmp40x0.xml");
+				mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_hmp40x0.xml");
 				
 				comport = mySettings.Rows[0]["ComPort"].ToString();
 				baud = Convert.ToInt32(mySettings.Rows[0]["Baudrate"].ToString(), 10);

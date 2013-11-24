@@ -16,6 +16,7 @@
  */
 using System;
 using System.Data;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using FunctionPluginInterface;
@@ -69,7 +70,7 @@ namespace PluginRampOnOff
             {
                 // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsPluginRampOnOff");
-                mySettings.ReadXml(confDir + "\\config_plugin_ramponoff.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_ramponoff.xml");
 
                 startSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStart"].ToString());
                 stopSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStop"].ToString());
@@ -314,7 +315,7 @@ namespace PluginRampOnOff
                 cbTestStopWhenFailed.Checked
             });
 
-            mySettings.WriteXml(confDir + "\\config_plugin_ramponoff.xml", XmlWriteMode.WriteSchema);
+            mySettings.WriteXml(confDir + Path.DirectorySeparatorChar + "config_plugin_ramponoff.xml", XmlWriteMode.WriteSchema);
 
         }
 

@@ -36,7 +36,7 @@ namespace SourceRemoteControl
 {
     public partial class Form1 : Form
     {
-        static readonly object _timerLock = new object();
+        //static readonly object _timerLock = new object();
         delegate void addTextCallback(string text);
         
         List<InterfaceSourcePlugin> list_sourcePlugins = new List<InterfaceSourcePlugin>();
@@ -80,7 +80,7 @@ namespace SourceRemoteControl
             {
                 // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsSourceRemoteControl");
-                mySettings.ReadXml(optConfigDirectory + "\\config_user.xml");
+                mySettings.ReadXml(optConfigDirectory + Path.DirectorySeparatorChar + "config_user.xml");
 
                 sourceName = mySettings.Rows[0]["SourcePluginName"].ToString();
                 functionName = mySettings.Rows[0]["SelectedFunctionPluginName"].ToString();
@@ -499,7 +499,7 @@ namespace SourceRemoteControl
                 else
                     mySettings.Rows[0]["Check" + i.ToString()] = "";
             }
-            mySettings.WriteXml(optConfigDirectory + "\\config_user.xml", XmlWriteMode.WriteSchema);
+            mySettings.WriteXml(optConfigDirectory + Path.DirectorySeparatorChar + "config_user.xml", XmlWriteMode.WriteSchema);
         }
 
         private void lboxFunctions_SelectedIndexChanged(object sender, EventArgs e)

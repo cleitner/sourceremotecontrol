@@ -286,7 +286,10 @@ namespace PluginCheckSerial
             cbComport.Top = 64;
             cbComport.Left = 110;
             cbComport.Width = 300;
-            cbComport.SelectedIndex = cbComport.Items.IndexOf(optSerialPort);
+			if(optSerialPort.Length == 0) 
+				cbComport.SelectedIndex = 0;
+			else 
+            	cbComport.SelectedIndex = cbComport.Items.IndexOf(optSerialPort);
             setupForm.Controls.Add(cbComport);
 
             cbBaudrate = new ComboBox();
@@ -381,7 +384,7 @@ namespace PluginCheckSerial
             {
                 // open config file
                 mySettings = new DataTable("SettingsPluginCheckSerial");
-                mySettings.ReadXml(confDir + "\\config_plugin_checkserial.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_checkserial.xml");
             }
             catch 
             {
@@ -414,7 +417,7 @@ namespace PluginCheckSerial
             mySettings.Rows[inst]["SendBeforeCheckStr"] = optStrSendBeforeCheck;
 
             // Write to Isolated Storage
-            mySettings.WriteXml(confDir + "\\config_plugin_checkserial.xml", XmlWriteMode.WriteSchema);
+            mySettings.WriteXml(confDir + Path.DirectorySeparatorChar + "config_plugin_checkserial.xml", XmlWriteMode.WriteSchema);
         }
 
 
@@ -428,7 +431,7 @@ namespace PluginCheckSerial
             {
                  // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsPluginCheckSerial");
-                mySettings.ReadXml(confDir + "\\config_plugin_checkserial.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_checkserial.xml");
                 
                 optSerialPort = mySettings.Rows[instance]["ComPort"].ToString();
                 optBaudrate = Convert.ToInt32(mySettings.Rows[instance]["Baudrate"].ToString(), 10);

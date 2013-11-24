@@ -73,7 +73,7 @@ namespace PluginRampTrapezoidal
             {
                 // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsPluginRampSawTooth");
-                mySettings.ReadXml(confDir + "\\config_plugin_rampsawtooth.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_rampsawtooth.xml");
                 
                 startSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStart"].ToString());
                 stopSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStop"].ToString());
@@ -375,7 +375,7 @@ namespace PluginRampTrapezoidal
                 cbTestStopWhenFailed.Checked
             });
             
-            mySettings.WriteXml(confDir + "\\config_plugin_rampsawtooth.xml", XmlWriteMode.WriteSchema);
+            mySettings.WriteXml(confDir + Path.DirectorySeparatorChar + "config_plugin_rampsawtooth.xml", XmlWriteMode.WriteSchema);
 
             
         }

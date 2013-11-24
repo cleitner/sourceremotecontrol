@@ -15,6 +15,7 @@
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 using System;
+using System.IO;
 using System.Data;
 using System.Threading;
 using System.Windows.Forms;
@@ -70,7 +71,7 @@ namespace PluginRampTrapezoidal
             {
                 // Create Settings Table
                 DataTable mySettings = new DataTable("SettingsPluginRampTrapezoidal");
-                mySettings.ReadXml(confDir + "\\config_plugin_ramptrapezoidal.xml");
+                mySettings.ReadXml(confDir + Path.DirectorySeparatorChar + "config_plugin_ramptrapezoidal.xml");
                 
                 startSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStart"].ToString());
                 stopSpg = (float)Convert.ToDecimal(mySettings.Rows[0]["VoltageStop"].ToString());
@@ -372,7 +373,7 @@ namespace PluginRampTrapezoidal
                 cbTestStopWhenFailed.Checked
             });
 
-            mySettings.WriteXml(confDir + "\\config_plugin_ramptrapezoidal.xml", XmlWriteMode.WriteSchema);
+            mySettings.WriteXml(confDir + Path.DirectorySeparatorChar + "config_plugin_ramptrapezoidal.xml", XmlWriteMode.WriteSchema);
 
             
         }
